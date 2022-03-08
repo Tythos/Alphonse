@@ -11,6 +11,8 @@ behaviors exist within the global scope as program-level variables and
 functions. This includes the main loop, rendering context, GL configuration,
 program/shader variables, vertex buffers... It's all global.
 
+.. image:: doc/engineAlphonse.jpg
+
 The MSVC solution in the "msvc/" folder is the easiest way to build this
 project. You could also build the "main.cpp" from the command line, if you so
 desire (or are using a different IDE/compiler). Either way, you will need the
