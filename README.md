@@ -10,7 +10,7 @@ behaviors exist within the global scope as program-level variables and
 functions. This includes the main loop, rendering context, GL configuration,
 program/shader variables, vertex buffers... It's all global.
 
-.. image:: doc/engineAlphonse.jpg
+![Alphonse Architecture](architecture.jpg)
 
 ## Cloning
 
