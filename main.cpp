@@ -12,7 +12,7 @@
 #include <iostream>
 #include <SDL.h>
 #include <gl\glew.h>
-#include <gl\glu.h>
+// #include <gl\glu.h>
 #include <SDL_opengl.h>
 
  /**
@@ -125,7 +125,7 @@ void startApp() {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		throw std::runtime_error("SDL initialization failed");
 	}
-	WINDOW = SDL_CreateWindow("Artemis - Alphonse", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+	WINDOW = SDL_CreateWindow("Artemis - Alphonse", SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
 	if (WINDOW == NULL) {
 		throw std::runtime_error("Window initialization failed");
 	}
@@ -151,7 +151,7 @@ void startGraphics() {
 
 	// load and compile vertex shader
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	std::string vertexString = readFile("../basic.v.glsl");
+	std::string vertexString = readFile("basic.v.glsl");
 	const char* vertexRaw = vertexString.c_str();
 	glShaderSource(vertexShader, 1, &vertexRaw, NULL);
 	glCompileShader(vertexShader);
@@ -165,7 +165,7 @@ void startGraphics() {
 
 	// load and compile fragment shader
 	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	std::string fragmentString = readFile("../basic.f.glsl");
+	std::string fragmentString = readFile("basic.f.glsl");
 	const char* fragmentRaw = fragmentString.c_str();
 	glShaderSource(fragmentShader, 1, &fragmentRaw, NULL);
 	glCompileShader(fragmentShader);
@@ -276,10 +276,10 @@ bool mainLoop() {
 	bool isRunning = true;
 	SDL_Event event;
 	while (SDL_PollEvent(&event) != 0) {
-		if (event.type == SDL_QUIT) {
+		if (event.type == SDL_EVENT_QUIT) {
 			isRunning = false;
 		}
-		else if (event.type == SDL_TEXTINPUT) {
+		else if (event.type == SDL_EVENT_TEXT_INPUT) {
 			isRunning = onTextInput(event.text.text[0]);
 		}
 	}
